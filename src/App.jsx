@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Container, ListGroup, Form } from 'react-bootstrap';
+import logo from './assets/react.svg';
 
 export default function App() {
   // fazendo o todolist com bostrap mesmo
@@ -21,6 +22,7 @@ export default function App() {
 
   return (
       <Container className="mt-5 text-center" style={{ maxWidth: "400px" }}>
+      <img src={logo} alt="React" style={{ width: 80 }} className="mb-3" />
       <h1>Todo List</h1>
       <Form.Control
         type="text"
