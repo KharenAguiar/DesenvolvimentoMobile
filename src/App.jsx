@@ -20,10 +20,10 @@ export default function App() {
     setLista(novaLista); // Atualiza o estado com a nova lista 
   }
 
-  return (
-      <Container className="mt-5 text-center" style={{ maxWidth: "400px" }}>
+    return (
+      <Container className="text-center" style={{ maxWidth: "400px" }}>
       <img src={logo} alt="React" style={{ width: 80 }} className="mb-3" />
-      <h1>Todo List</h1>
+      <h1>TodoList</h1>
       <Form.Control
         type="text"
         placeholder="Digite uma tarefa"
