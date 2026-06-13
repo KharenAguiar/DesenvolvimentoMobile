@@ -1,16 +1,21 @@
-name: Build and Publish Docker Image
+name: Build, Publish and Deploy Docker Image
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+env:
+  DOCKER_IMAGE: docker.io/kharenaguiar/desenvolvimentomobile:latest
+  AZURE_WEBAPP_NAME: rg-aula-containers-kharen
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
+      - name: Checkout do codigo
         uses: actions/checkout@v3
 
       - name: Login no Docker Hub
@@ -24,11 +29,11 @@ jobs:
         with:
           context: .
           push: true
-          tags: kharenaguiar/desenvolvimentomobile:latest
+          tags: ${{ env.DOCKER_IMAGE }}
 
       - name: Deploy para Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: rg-aula-containers-kharen
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: docker.io/kharenaguiar/desenvolvimentomobile:latest
+          images: ${{ env.DOCKER_IMAGE }}
